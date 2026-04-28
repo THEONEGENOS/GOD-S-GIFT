@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { PencilIcon, UserCircleIcon } from "@heroicons/react/solid";
-import { FaArrowLeft, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaSave, FaTimes } from "react-icons/fa";
+import { FaArrowLeft, FaEdit, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaRegUserCircle, FaSave, FaTimes } from "react-icons/fa";
 
 type Profile = {
   email: string;
@@ -23,7 +22,7 @@ const fieldMeta: Record<
 > = {
   name: {
     label: "Full Name",
-    icon: <UserCircleIcon className="h-5 w-5" />,
+    icon: <FaRegUserCircle className="text-[1.1rem]" />,
     placeholder: "Enter your full name",
   },
   address: {
@@ -180,7 +179,7 @@ const ProfilePage: React.FC = () => {
           <section className="rounded-[2rem] border border-white/10 bg-white/10 p-6 shadow-2xl shadow-slate-950/30 backdrop-blur-2xl sm:p-8">
             <div className="flex flex-col items-center text-center">
               <div className="inline-flex h-24 w-24 items-center justify-center rounded-[2rem] border border-cyan-400/20 bg-cyan-400/10 text-cyan-200">
-                <UserCircleIcon className="h-14 w-14" />
+                <FaRegUserCircle className="text-[3.5rem]" />
               </div>
               <p className="mt-5 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Customer Account</p>
               <h2 className="mt-3 text-3xl font-semibold text-white">{profile.name || "Customer Profile"}</h2>
@@ -255,7 +254,7 @@ const ProfilePage: React.FC = () => {
                           onClick={() => handleEdit(field, value)}
                           className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 text-sm font-semibold text-slate-200 transition hover:border-cyan-300/30 hover:text-white"
                         >
-                          <PencilIcon className="h-4 w-4" />
+                          <FaEdit className="text-sm" />
                           Edit
                         </button>
                       )}

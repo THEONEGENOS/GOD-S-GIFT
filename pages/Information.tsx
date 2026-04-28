@@ -1,8 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Image, { StaticImageData } from "next/image";
-import { UserCircleIcon } from "@heroicons/react/solid";
-import { FaArrowRight, FaCheckCircle, FaMapMarkerAlt, FaSignOutAlt, FaTint } from "react-icons/fa";
+import { FaArrowRight, FaCheckCircle, FaMapMarkerAlt, FaRegUserCircle, FaSignOutAlt, FaTint } from "react-icons/fa";
 import one from "../public/1.jpg";
 import two from "../public/2.jpg";
 import three from "../public/3.jpg";
@@ -144,7 +143,7 @@ const Information: React.FC = () => {
               aria-label="Go to profile"
             >
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-slate-950/30 text-cyan-200 transition group-hover:bg-slate-950/50">
-                <UserCircleIcon className="h-7 w-7" />
+                <FaRegUserCircle className="text-[1.75rem]" />
               </span>
               <span>
                 <span className="block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { UserCircleIcon } from "@heroicons/react/solid";
 import {
   FaArrowLeft,
   FaArrowRight,
   FaCalendarAlt,
   FaClock,
   FaMapMarkerAlt,
+  FaRegUserCircle,
   FaSignOutAlt,
   FaTint,
   FaTrashAlt,
@@ -159,7 +159,7 @@ const OrderSummary: React.FC = () => {
               aria-label="Go to profile"
             >
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-slate-950/30 text-cyan-200 transition group-hover:bg-slate-950/50">
-                <UserCircleIcon className="h-7 w-7" />
+                <FaRegUserCircle className="text-[1.75rem]" />
               </span>
               <span>
                 <span className="block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
