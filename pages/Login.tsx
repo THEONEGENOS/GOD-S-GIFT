@@ -174,7 +174,7 @@ const Login: React.FC = () => {
               </p>
               <h2 className="mt-3 text-3xl font-semibold text-white">Sign in to your account</h2>
               <p className="mt-3 text-sm leading-6 text-slate-300">
-                Enter your details below to continue to your water ordering dashboard.
+                Genos Enter your details below to continue to your water ordering dashboard.
               </p>
             </div>
 
