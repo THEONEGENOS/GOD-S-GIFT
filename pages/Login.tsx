@@ -146,6 +146,27 @@ const Login: React.FC = () => {
         </section>
 
         <section className="mx-auto w-full max-w-md">
+          <div className="mb-6 flex items-center gap-3 rounded-[1.5rem] border border-white/10 bg-white/10 p-3 backdrop-blur-xl lg:hidden">
+            <div className="shrink-0 rounded-2xl border border-white/10 bg-slate-950/30 p-2">
+              <Image
+                src="/gods-gift-logo.png"
+                alt="God's Gift Water Station logo"
+                width={64}
+                height={64}
+                className="h-14 w-14 rounded-xl object-contain"
+                priority
+              />
+            </div>
+            <div className="min-w-0">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-200 sm:text-xs sm:tracking-[0.3em]">
+                Official Login Portal
+              </p>
+              <h1 className="mt-2 text-base font-semibold leading-tight tracking-[0.08em] text-white sm:text-lg sm:tracking-[0.12em]">
+                GOD&apos;S GIFT WATER STATION
+              </h1>
+            </div>
+          </div>
+
           <div className="rounded-[2rem] border border-white/10 bg-white/10 p-6 shadow-2xl shadow-slate-950/40 backdrop-blur-2xl sm:p-8">
             <div className="mb-8">
               <p className="text-sm font-medium uppercase tracking-[0.28em] text-cyan-200">

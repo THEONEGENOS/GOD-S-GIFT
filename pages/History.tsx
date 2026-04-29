@@ -104,12 +104,20 @@ const History: React.FC = () => {
             </p>
           </div>
 
-          <button
-            onClick={() => router.push("/Done")}
-            className="inline-flex h-12 items-center justify-center rounded-xl border border-white/10 bg-white/10 px-5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
-          >
-            Back
-          </button>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <button
+              onClick={() => router.push("/Order")}
+              className="inline-flex h-12 items-center justify-center rounded-xl bg-cyan-400 px-5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+            >
+              Make Another Order
+            </button>
+            <button
+              onClick={() => router.push("/Done")}
+              className="inline-flex h-12 items-center justify-center rounded-xl border border-white/10 bg-white/10 px-5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
+            >
+              Back
+            </button>
+          </div>
         </div>
 
         <div className="mb-8 grid gap-4 lg:grid-cols-[1.35fr_1fr]">
@@ -155,8 +163,16 @@ const History: React.FC = () => {
                 A complete summary of your previous purchases.
               </p>
             </div>
-            <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200">
-              {totalOrders} {totalOrders === 1 ? "entry" : "entries"}
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <button
+                onClick={() => router.push("/Order")}
+                className="inline-flex h-11 items-center justify-center rounded-xl border border-cyan-400/20 bg-cyan-400/10 px-4 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:text-white"
+              >
+                Make Another Order
+              </button>
+              <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200">
+                {totalOrders} {totalOrders === 1 ? "entry" : "entries"}
+              </div>
             </div>
           </div>
 

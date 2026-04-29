@@ -37,6 +37,7 @@ const Payments: React.FC = () => {
   const [warningMessage, setWarningMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const pricePerGallon = 15;
 
   useEffect(() => {
@@ -154,8 +155,8 @@ const Payments: React.FC = () => {
       const result = await response.json();
 
       if (response.ok) {
-        alert("Trade Successful!!");
-        router.push("/Done");
+        setIsRedirecting(true);
+        await router.push("/Done");
       } else {
         alert(`Failed to process payment: ${result.error}`);
       }
@@ -193,6 +194,18 @@ const Payments: React.FC = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
+      {isRedirecting && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-md">
+          <div className="w-full max-w-md rounded-[2rem] border border-cyan-400/20 bg-slate-900/85 p-8 text-center shadow-2xl shadow-slate-950/50">
+            <div className="mx-auto h-14 w-14 animate-spin rounded-full border-4 border-cyan-400/20 border-t-cyan-300" />
+            <h2 className="mt-6 text-2xl font-semibold text-white">Trade successful</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-300">
+              Please wait while we prepare your confirmation page.
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.2),_transparent_28%),radial-gradient(circle_at_bottom_right,_rgba(56,189,248,0.16),_transparent_26%),linear-gradient(135deg,_#020617,_#0f172a_55%,_#082f49)]" />
       <div className="absolute left-[-8rem] top-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
       <div className="absolute bottom-[-6rem] right-[-5rem] h-96 w-96 rounded-full bg-sky-500/10 blur-3xl" />

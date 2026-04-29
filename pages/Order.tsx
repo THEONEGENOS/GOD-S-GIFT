@@ -21,6 +21,8 @@ const Order: React.FC = () => {
   const [selectedWaterType, setSelectedWaterType] = useState<string | null>(null);
   const [gallonCount, setGallonCount] = useState<number>(1);
   const [email, setEmail] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [isRedirecting, setIsRedirecting] = useState<boolean>(false);
   const router = useRouter();
 
   const dateRef = useRef<HTMLInputElement>(null);
@@ -56,6 +58,7 @@ const Order: React.FC = () => {
     }
 
     try {
+      setIsSubmitting(true);
       const response = await fetch("/api/order", {
         method: "POST",
         headers: {
@@ -72,8 +75,8 @@ const Order: React.FC = () => {
       });
 
       if (response.ok) {
-        alert("Order Placed!!");
-        router.push("/OrderSummary");
+        setIsRedirecting(true);
+        await router.push("/OrderSummary");
       } else {
         const errorData = await response.json();
         alert(errorData.message || "An error occurred while placing your order.");
@@ -81,6 +84,8 @@ const Order: React.FC = () => {
     } catch (error) {
       console.error("Failed to place the order", error);
       alert("There was an issue placing your order. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -96,6 +101,18 @@ const Order: React.FC = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
+      {isRedirecting && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-md">
+          <div className="w-full max-w-md rounded-[2rem] border border-cyan-400/20 bg-slate-900/85 p-8 text-center shadow-2xl shadow-slate-950/50">
+            <div className="mx-auto h-14 w-14 animate-spin rounded-full border-4 border-cyan-400/20 border-t-cyan-300" />
+            <h2 className="mt-6 text-2xl font-semibold text-white">Order placed successfully</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-300">
+              Please wait while we prepare your order summary.
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.2),_transparent_28%),radial-gradient(circle_at_bottom_right,_rgba(56,189,248,0.16),_transparent_26%),linear-gradient(135deg,_#020617,_#0f172a_55%,_#082f49)]" />
       <div className="absolute left-[-8rem] top-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
       <div className="absolute bottom-[-6rem] right-[-5rem] h-96 w-96 rounded-full bg-sky-500/10 blur-3xl" />
@@ -379,10 +396,11 @@ const Order: React.FC = () => {
 
               <button
                 type="submit"
-                className="inline-flex h-14 w-full items-center justify-center gap-3 rounded-2xl bg-cyan-400 text-base font-semibold text-slate-950 transition hover:bg-cyan-300"
+                disabled={isSubmitting}
+                className="inline-flex h-14 w-full items-center justify-center gap-3 rounded-2xl bg-cyan-400 text-base font-semibold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-70"
               >
-                Proceed to Summary
-                <FaArrowRight className="text-sm" />
+                {isSubmitting ? "Processing order..." : "Proceed to Summary"}
+                {!isSubmitting && <FaArrowRight className="text-sm" />}
               </button>
             </form>
           </section>
